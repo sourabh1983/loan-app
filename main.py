@@ -1,10 +1,24 @@
 from fastapi import FastAPI, HTTPException
+from starlette.middleware.cors import CORSMiddleware
+
 from loan_app.app import LoanApp, LoanAppException
 from loan_app.models import Application, ApplicantDetail, ApplicationReview
 
 app = FastAPI()
 loan_app = LoanApp()
 
+# Configure CORS
+origins = [
+    "http://localhost:3000",  # React app url
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/initiate", response_model=Application)
 def initiate_application():
