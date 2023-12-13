@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const LoanForm = ({ initiationId }) => {
+const LoanForm = ({ initiationId, onLoanFormSubmit }) => {
   const [businessName, setBusinessName] = useState('');
   const [establishmentYear, setEstablishmentYear] = useState('');
   const [loanAmount, setLoanAmount] = useState('');
@@ -31,6 +31,7 @@ const LoanForm = ({ initiationId }) => {
       setLoanAmount('');
       setAccountProvider('myob');
       setError(null);
+      onLoanFormSubmit(response.data);
     } catch (error) {
       // Handle errors
       setError('Error submitting loan application');
@@ -60,7 +61,6 @@ const LoanForm = ({ initiationId }) => {
             type="number"
             value={establishmentYear}
             onChange={(e) => setEstablishmentYear(e.target.value)}
-            required
           />
         </label>
 
@@ -85,7 +85,7 @@ const LoanForm = ({ initiationId }) => {
             onChange={(e) => setAccountProvider(e.target.value)}
           >
             <option value="myob">MYOB</option>
-            <option value="xero">Xero</option>
+            <option value="xero">XERO</option>
           </select>
         </label>
 
