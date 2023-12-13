@@ -1,0 +1,6 @@
+fastapi
+requests
+pytest
+faker
+httpx
+black
