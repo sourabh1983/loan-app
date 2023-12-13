@@ -42,34 +42,34 @@ class LoanApp:
         return self.database.create_application_review(applicant, balance_sheet)
 
     def submit_application(self, application_id: int):
-        # try:
-        application_review_detail = self.database.get_application_review_detail(
-            application_id
-        )
-
-        balance_sheet_summary = self.get_balance_sheet_summary(
-            application_review_detail
-        )
-
-        pre_assessment = utils.get_pre_assessment(
-            application_review_detail.loan_amount, balance_sheet_summary
-        )
-
-        self.database.update_application_status(
-            application_review_detail, status="SUBMITTED"
-        )
-
-        final_result = decision_engine.get_application_result(
-            BusinessDetail(
-                name=application_review_detail.business_name,
-                year_established=application_review_detail.year_established,
-                requested_loan_amount=application_review_detail.loan_amount,
-                balance_sheet_summary=balance_sheet_summary,
-                pre_assessment_value=pre_assessment,
+        try:
+            application_review_detail = self.database.get_application_review_detail(
+                application_id
             )
-        )
-        # except Exception as e:
-        #     raise LoanAppException(e)
+
+            balance_sheet_summary = self.get_balance_sheet_summary(
+                application_review_detail
+            )
+
+            pre_assessment = utils.get_pre_assessment(
+                application_review_detail.loan_amount, balance_sheet_summary
+            )
+
+            self.database.update_application_status(
+                application_review_detail, status="SUBMITTED"
+            )
+
+            final_result = decision_engine.get_application_result(
+                BusinessDetail(
+                    name=application_review_detail.business_name,
+                    year_established=application_review_detail.year_established,
+                    requested_loan_amount=application_review_detail.loan_amount,
+                    balance_sheet_summary=balance_sheet_summary,
+                    pre_assessment_value=pre_assessment,
+                )
+            )
+        except Exception as e:
+            raise LoanAppException(e)
 
         return {"loan_approval_amount": final_result}
 
