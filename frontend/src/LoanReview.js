@@ -11,15 +11,12 @@ const LoanReview = ({loanData}) => {
             setSubmitting(true);
 
             // Make a POST request to the backend
-            const response = await axios.post(`http://localhost:8000/submit_application/${loanData.application_id}`, {});
-
-            // Handle the response if needed
+            const response = await axios.post(`http://localhost:80/submit_application/${loanData.application_id}`);
             console.log('Submission response:', response.data);
             setLoanApprovalAmount(response.data.loan_approval_amount);
             // Clear errors on successful submission
             setSubmitError(null);
         } catch (error) {
-            // Handle errors
             setSubmitError('Error submitting to backend');
             console.error('Error submitting to backend:', error);
         } finally {
@@ -67,11 +64,11 @@ const LoanReview = ({loanData}) => {
             )}
 
             {loanApprovalAmount !== null && (
-            <div>
-              <h3>Loan Approval Amount</h3>
-              <p>${loanApprovalAmount}</p>
-            </div>
-      )}
+                <div>
+                    <h3>Loan Approval Amount</h3>
+                    <p>${loanApprovalAmount}</p>
+                </div>
+            )}
         </div>
     );
 };

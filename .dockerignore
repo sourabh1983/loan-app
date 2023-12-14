@@ -1,0 +1,13 @@
+*.egg-info
+*.pot
+*.py[co]
+.coverage
+.hypothesis
+.idea
+.python-version
+__pycache__
+docker-compose.yml
+docker/environments
+Dockerfile
+htmlcov
+

@@ -20,6 +20,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.post("/initiate", response_model=Application)
 def initiate_application():
     return loan_app.initiate_application()

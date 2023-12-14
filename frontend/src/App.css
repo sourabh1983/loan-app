@@ -17,10 +17,11 @@ h1 {
 
 .initiation-id {
   color: #555;
+  font-weight: bold;
 }
 
 .form-container,
-.loan-details-container,
+.loan-review-container,
 .initiate-button-container {
   margin-top: 20px;
 }
@@ -40,10 +41,6 @@ h1 {
   background-color: #45a049;
 }
 
-.initiation-id-container {
-  margin-top: 20px;
-}
-
 .initiation-id {
   font-size: 18px;
   color: #333;
@@ -54,7 +51,7 @@ h1 {
 
 /* LoanForm.css */
 .loan-form-container {
-  max-width: 400px;
+  max-width: 800px;
   margin: auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -96,8 +93,8 @@ button:hover {
 }
 
 /* LoanDetails.css */
-.loan-details-container {
-  max-width: 600px;
+.loan-review-container {
+  max-width: 800px;
   margin: auto;
   padding: 20px;
   border: 1px solid #ccc;

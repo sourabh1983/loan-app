@@ -1,8 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import List
-
 from faker import Faker
-
 from loan_app.models import ApplicantDetail, BalanceSheet
 
 
@@ -31,12 +29,12 @@ def generate_fake_balance_sheet() -> List[BalanceSheet]:
     fake = Faker()
     fake_balance_sheet = [
         BalanceSheet(
-            year=fake.random_int(min=2019, max=2022),
-            month=fake.random_int(min=1, max=12),
+            year=2023,
+            month=month,
             profit_or_loss=fake.random_number(digits=6),
             assets_value=fake.random_number(digits=5),
         )
-        for _ in range(4)
+        for month in range(1, 13)
     ]
     return fake_balance_sheet
 

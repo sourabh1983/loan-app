@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List
 
 from loan_app.db import Database
 from loan_app.models import (
@@ -41,7 +41,7 @@ class LoanApp:
 
         return self.database.create_application_review(applicant, balance_sheet)
 
-    def submit_application(self, application_id: int):
+    def submit_application(self, application_id: int) -> dict:
         try:
             application_review_detail = self.database.get_application_review_detail(
                 application_id
@@ -75,7 +75,7 @@ class LoanApp:
 
     def get_balance_sheet_summary(
         self, application_review_detail: ApplicationReview
-    ) -> Optional[List[BalanceSheetSummary]]:
+    ) -> List[BalanceSheetSummary]:
         applicant_detail = self.database.get_application_review_detail(
             application_review_detail.application_id
         )

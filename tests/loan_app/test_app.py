@@ -84,39 +84,19 @@ class TestLoanApp:
             Application(status="REVIEW", id=250)
         ]
         loan_app_instance.database.applicant_data = [
-            {
-                "id": 101,
-                "business_name": "SKB",
-                "loan_amount": 500000,
-                "accounting_provider": "myob",
-                "application_id": 250,
-                "balance_sheet": [
-                    {
-                        "year": 2021,
-                        "month": 8,
-                        "profit_or_loss": 46502,
-                        "assets_value": 39095,
-                    },
-                    {
-                        "year": 2021,
-                        "month": 11,
-                        "profit_or_loss": 435601,
-                        "assets_value": 73287,
-                    },
-                    {
-                        "year": 2022,
-                        "month": 7,
-                        "profit_or_loss": 756955,
-                        "assets_value": 38057,
-                    },
-                    {
-                        "year": 2022,
-                        "month": 10,
-                        "profit_or_loss": 226855,
-                        "assets_value": 5732,
-                    },
+            ApplicationReview(
+                id=101,
+                business_name="SKB",
+                loan_amount=500000,
+                accounting_provider="myob",
+                application_id=250,
+                balance_sheet=[
+                    BalanceSheet(year=2021, month=8, profit_or_loss=46502, assets_value=39095),
+                    BalanceSheet(year=2021, month=11, profit_or_loss=435601, assets_value=73287),
+                    BalanceSheet(year=2022, month=7, profit_or_loss=756955, assets_value=38057),
+                    BalanceSheet(year=2022, month=10, profit_or_loss=226855, assets_value=5732),
                 ],
-            }
+            )
         ]
 
         loan_app_instance.submit_application(application_id=250)
